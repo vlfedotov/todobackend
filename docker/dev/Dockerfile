@@ -1,4 +1,4 @@
-FROM todobackend-base:latest
+FROM vlfedotov/todobackend-base:latest
 
 RUN apt-get update && \
     apt-get install -qy python-dev libmysqlclient-dev

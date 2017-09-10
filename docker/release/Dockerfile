@@ -1,4 +1,4 @@
-FROM todobackend-base:latest
+FROM vlfedotov/todobackend-base:latest
 
 COPY target /wheelhouse
 

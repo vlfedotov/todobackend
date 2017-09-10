@@ -21,7 +21,7 @@ app:
         - "--die-on-term"
 
 test:
-    image: todobackend-specs
+    image: vlfedotov/todobackend-specs
     links:
         - nginx
     environment:
@@ -44,19 +44,20 @@ db:
         - "3306"
     environment:
         MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: todobackend
 
 agent:
-    image: todo-ansible
-    volumes:
-        - ../../ansible/probe.yml:/ansible/site.yml
+    image: vlfedotov/ansible
     links:
         - db
     environment:
         PROBE_HOST: "db"
         PROBE_PORT: "3306"
+    command: ["probe.yml"]
 
 nginx:
-    image: nginx
+    build: .
+    dockerfile: Dockerfile.nginx
     links:
         - app
     volumes:
